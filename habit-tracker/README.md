@@ -1,3 +1,9 @@
+# Habit Tracker
+
+[![View on Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nikulkumar-dabhi-habit-tracke-habit-trackerhabit-tracker-fsttsu.streamlit.app/)
+
+**Live App:** [https://nikulkumar-dabhi-habit-tracke-habit-trackerhabit-tracker-fsttsu.streamlit.app/](https://nikulkumar-dabhi-habit-tracke-habit-trackerhabit-tracker-fsttsu.streamlit.app/)
+
 # Habit Tracker Dashboard
 
 A simple web dashboard to track 10 daily habits using Streamlit and SQLite.
