@@ -73,6 +73,11 @@ if dashboard == "Daily Tracker":
             habit_states[habit] = st.checkbox(habit, value=False)
         notes = st.text_area("Notes")
 
+    # --- Percentage Progress Bar ---
+    completed = sum(habit_states.values())
+    percent = int((completed / len(HABITS)) * 100)
+    st.progress(percent / 100, text=f"Today's Progress: {percent}% ({completed}/{len(HABITS)})")
+
     # --- Save Button ---
     if st.button("Save/Update"):
         with get_connection() as conn:
@@ -118,6 +123,13 @@ elif dashboard == "Statistics":
         st.subheader("Total Habits Completed Per Day")
         df['total_completed'] = df[habit_cols].sum(axis=1)
         st.line_chart(df.set_index('date')['total_completed'])
+
+        # Stacked column chart: Daily progress for all habits
+        st.subheader("Daily Progress (Stacked Column Chart)")
+        stacked_df = df[['date'] + habit_cols].copy()
+        stacked_df['date'] = pd.to_datetime(stacked_df['date'])
+        stacked_df = stacked_df.set_index('date')
+        st.bar_chart(stacked_df)
 
         # Best streak (longest consecutive days with all habits done)
         st.subheader("Best Streak (All Habits Done)")
