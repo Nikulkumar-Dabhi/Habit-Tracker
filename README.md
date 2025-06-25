@@ -2,6 +2,9 @@
 
 A simple web dashboard to track 10 daily habits using Streamlit and SQLite.
 
+## About
+Track Daily Habits because data says everything.
+
 ## Features
 - Track 10 customizable habits daily
 - Add notes for each day
@@ -12,8 +15,8 @@ A simple web dashboard to track 10 daily habits using Streamlit and SQLite.
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-   cd YOUR-REPO-NAME
+   git clone https://github.com/Nikulkumar-Dabhi/Habit-Tracker.git
+   cd Habit-Tracker
    ```
 
 2. **Install dependencies**
@@ -39,4 +42,4 @@ A simple web dashboard to track 10 daily habits using Streamlit and SQLite.
 
 ---
 
-Feel free to customize the habits in `habit_tracker.py`! 
+Feel free to customize the habits in `habit_tracker.py`!
