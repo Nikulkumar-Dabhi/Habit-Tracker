@@ -2,6 +2,7 @@ import streamlit as st
 import sqlite3
 from datetime import date
 import pandas as pd
+import matplotlib.pyplot as plt
 import os
 
 # --- Habit List ---
@@ -75,17 +76,29 @@ if dashboard == "Daily Tracker":
     st.subheader(f"Habits for {selected_date}")
     habit_states = {}
 
-    if entry:
-        for i, habit in enumerate(HABITS):
-            habit_states[habit] = st.checkbox(habit, value=bool(entry[i+2]))
-        notes = st.text_area("Notes", value=entry[-1] or "")
-    else:
-        for habit in HABITS:
-            habit_states[habit] = st.checkbox(habit, value=False)
-        notes = st.text_area("Notes")
+    col1, col2 = st.columns([2, 2])
+    with col1:
+        if entry:
+            for i, habit in enumerate(HABITS):
+                habit_states[habit] = st.checkbox(habit, value=bool(entry[i+2]))
+            notes = st.text_area("Notes", value=entry[-1] or "")
+        else:
+            for habit in HABITS:
+                habit_states[habit] = st.checkbox(habit, value=False)
+            notes = st.text_area("Notes")
 
     completed = sum(habit_states.values())
     percent = int((completed / len(HABITS)) * 100)
+
+    with col2:
+        if completed == len(HABITS):
+            st.markdown("""
+                <div style='display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px 0;'>
+                    <h1 style='color: #4CAF50; font-size: 2.2em; text-align: center;'>Congratulations! 🎉<br>You completed all your habits today!</h1>
+                </div>
+            """, unsafe_allow_html=True)
+            st.balloons()
+
     st.progress(percent / 100, text=f"Today's Progress: {percent}% ({completed}/{len(HABITS)})")
 
     if st.button("Save/Update"):
